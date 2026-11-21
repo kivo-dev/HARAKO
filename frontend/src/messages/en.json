@@ -1,0 +1,164 @@
+{
+  "Meta": {
+    "title": "HARAKO — Explore Maku Free Zone",
+    "description": "A smart tourism platform for the Maku Free Zone, West Azerbaijan."
+  },
+  "Language": {
+    "label": "Language",
+    "switchTo": "فارسی"
+  },
+  "Nav": {
+    "label": "Main navigation",
+    "map": "Map",
+    "discover": "Discover",
+    "assistant": "Assistant",
+    "route": "Route"
+  },
+  "Landing": {
+    "badge": "Maku Free Zone, West Azerbaijan",
+    "title1": "Explore Maku",
+    "title2": "at your own pace",
+    "subtitle": "Find sights, routes and services across the Maku Free Zone, all in one app.",
+    "searchLabel": "Search places",
+    "searchPlaceholder": "Find a place in Maku…",
+    "searchButton": "Search",
+    "start": "Get started",
+    "suggested": "Browse by category"
+  },
+  "Discover": {
+    "location": "Maku, West Azerbaijan",
+    "title1": "Discover",
+    "title2": "Maku",
+    "subtitle": "Places, experiences and services across the free zone at a glance.",
+    "searchLabel": "Search",
+    "searchPlaceholder": "Search places in Maku…",
+    "all": "All",
+    "results": "Results",
+    "count": "{count, plural, one {# place} other {# places}}",
+    "empty": "No places found.",
+    "emptyHint": "Try a different word, or set the filter back to All.",
+    "reset": "Show all places",
+    "sample": "Prototype",
+    "sampleNote": "The places on this page are unverified sample data.",
+    "loading": "Loading…",
+    "apiError": "Could not load places from the server.",
+    "suggestionsTitle": "Our suggestions",
+    "suggestionsHint": "Fresh ideas every time you open the app",
+    "refresh": "Fresh suggestions",
+    "tabs": {
+      "label": "Discover sections",
+      "places": "Places",
+      "opportunities": "Economic opportunities"
+    },
+    "apiErrorHint": "This is a connection problem, not an empty result. Check your connection and try again.",
+    "retry": "Try again",
+    "suggestionsError": "Suggestions could not be loaded. Tap refresh to try again.",
+    "serverDown": "Opportunities could not be loaded from the server. Try again later."
+  },
+  "Categories": {
+    "attractions": "Tourist attractions",
+    "accommodation_food": "Accommodation and dining",
+    "transport": "Transportation",
+    "public_services": "Public services",
+    "nature_adventure": "Nature and adventure",
+    "nature": "Nature",
+    "history": "Historical",
+    "services": "Services"
+  },
+  "Place": {
+    "back": "Back",
+    "save": "Save place",
+    "unsave": "Remove from saved",
+    "about": "About this place",
+    "distance": "{km, number} km away",
+    "routeHere": "Route here",
+    "showOnMap": "Show on map",
+    "loadError": "This place could not be loaded from the server.",
+    "loadErrorHint": "It may exist; the connection failed. Reload the page to try again.",
+    "noCoords": "This place has no confirmed coordinates yet, so it cannot be shown on the map or routed to.",
+    "noCoordsShort": "No coordinates yet"
+  },
+  "Soon": {
+    "badge": "Coming soon",
+    "map": {
+      "title": "Interactive map",
+      "text": "The map will be added in the next stage."
+    },
+    "assistant": {
+      "title": "Assistant",
+      "text": "Chatting with the assistant will be added in a later stage."
+    },
+    "route": {
+      "title": "Routing",
+      "text": "In-app routing will be added in a later stage."
+    }
+  },
+  "Opportunities": {
+    "title1": "Economic",
+    "title2": "opportunities in Maku",
+    "hint": "Investment and business opportunities in the city and the free zone.",
+    "results": "Opportunities",
+    "count": "{count, plural, one {# opportunity} other {# opportunities}}",
+    "empty": "No opportunities found.",
+    "emptyHint": "Pick another sector.",
+    "sampleNote": "These opportunities are placeholders and will come from the server later.",
+    "sectors": {
+      "trade": "Trade and transit",
+      "industry": "Industry",
+      "agriculture": "Agriculture",
+      "tourism": "Tourism"
+    },
+    "apiError": "Opportunities could not be loaded from the server."
+  },
+  "Map": {
+    "title": "Map",
+    "mapLabel": "Map of places",
+    "all": "All",
+    "loading": "Loading the map…",
+    "error": "Places could not be loaded from the server.",
+    "retry": "Try again",
+    "empty": "No place with confirmed coordinates has been added yet.",
+    "emptyFilter": "No place in this category has coordinates yet.",
+    "details": "Details",
+    "routeHere": "Route here",
+    "missingCoords": "{count, plural, one {# place has} other {# places have}} no coordinates yet and is not on the map."
+  },
+  "Route": {
+    "title": "Route",
+    "carOnly": "Driving route only.",
+    "mapLabel": "Route map",
+    "destination": "Destination",
+    "pickDestination": "Choose a place",
+    "pickFirst": "Choose a destination first.",
+    "loadingPlaces": "Loading places…",
+    "errPlaces": "Places could not be loaded.",
+    "noRoutablePlaces": "No place with coordinates is available for routing yet.",
+    "useMyLocation": "Use my location",
+    "locating": "Finding your location…",
+    "you": "Your location",
+    "calculating": "Calculating the route…",
+    "distance": "Distance",
+    "duration": "Driving time",
+    "km": "{km, number} km",
+    "minutes": "{minutes, number} min",
+    "hoursMinutes": "{hours, number} h {minutes, number} min",
+    "provider": "Route calculated by {provider}.",
+    "noLine": "The route was calculated, but the provider sent no line to draw.",
+    "badLine": "The line from the provider did not match your start and the destination, so it is not drawn.",
+    "retry": "Try again",
+    "errNotConfigured": "Routing is not set up on the server yet.",
+    "errProvider": "The routing service did not answer. Try again in a moment.",
+    "errRate": "Too many requests. Wait a minute and try again.",
+    "errPlace": "This place no longer exists.",
+    "errNoCoords": "This place has no coordinates yet, so a route is not possible.",
+    "errNetwork": "Could not reach the server. Check your connection.",
+    "errGeneric": "The route could not be calculated.",
+    "geo": {
+      "denied": "Location access was denied. Allow it in your browser settings and try again.",
+      "unavailable": "Your location is not available right now.",
+      "timeout": "Finding your location took too long. Try again.",
+      "unsupported": "This browser cannot share its location.",
+      "invalid": "The location from your device was not valid."
+    }
+  }
+}
