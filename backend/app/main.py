@@ -66,7 +66,7 @@ async def _provider_error(_: Request, exc: ProviderError):
 app.include_router(places.router, prefix="/v1", tags=["places"])
 app.include_router(opportunities.router, prefix="/v1", tags=["opportunities"])
 app.include_router(routes.router, prefix="/v1", tags=["routes"])
-app.include_router(geo.router, prefix="/v1", tags=["geo (neshan pending)"])
+app.include_router(geo.router, prefix="/v1", tags=["geo (neshan)"])
 app.include_router(system.router, prefix="/v1", tags=["system"])
 app.include_router(tools.router, prefix="/v1", tags=["ai-tools"])
 

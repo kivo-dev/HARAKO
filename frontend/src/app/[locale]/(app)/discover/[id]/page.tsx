@@ -107,15 +107,17 @@ export default async function PlacePage({ params }: Props) {
           ))}
         </div>
 
-        {place.coords ? (
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-            <Link
-              href={{ pathname: "/route", query: { to: place.id } }}
-              className="inline-flex h-14 flex-1 items-center justify-center gap-2 rounded-full bg-lime-400 font-semibold text-forest-950 transition hover:bg-lime-300"
-            >
-              <Route className="size-5" aria-hidden />
-              {t("routeHere")}
-            </Link>
+        {/* Routing does not depend on this record's coordinates: the destination is found with the provider's
+            Search API and confirmed by the visitor, so the button is always available. */}
+        <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+          <Link
+            href={{ pathname: "/route", query: { to: place.id } }}
+            className="inline-flex h-14 flex-1 items-center justify-center gap-2 rounded-full bg-lime-400 font-semibold text-forest-950 transition hover:bg-lime-300"
+          >
+            <Route className="size-5" aria-hidden />
+            {t("routeHere")}
+          </Link>
+          {place.coords && (
             <Link
               href={{ pathname: "/map", query: { place: place.id } }}
               className="inline-flex h-14 flex-1 items-center justify-center gap-2 rounded-full bg-forest-950 font-medium text-white transition hover:bg-forest-800"
@@ -123,10 +125,8 @@ export default async function PlacePage({ params }: Props) {
               <MapIcon className="size-5" aria-hidden />
               {t("showOnMap")}
             </Link>
-          </div>
-        ) : (
-          <p className="mt-7 rounded-2xl bg-white px-4 py-3 text-sm text-ink-700">{t("noCoords")}</p>
-        )}
+          )}
+        </div>
         <div className="mt-3 hidden md:block">
           <FavoriteButton id={place.id} size="lg" className="!bg-white" />
         </div>

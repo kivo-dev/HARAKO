@@ -29,3 +29,7 @@ coverage/
 .idea/
 .DS_Store
 Thumbs.db
+
+# Local databases (never commit real data)
+*.db
+*.sqlite3

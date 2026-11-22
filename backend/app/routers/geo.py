@@ -63,5 +63,11 @@ async def search_external(
     return GeocodeOut(
         query=q,
         provider=hits[0].provider if hits else "none",
-        results=[ExternalPlace(label=h.title, address=h.address, category=h.category, lat=h.lat, lng=h.lng, provider=h.provider) for h in hits],
+        results=[
+            ExternalPlace(
+                label=h.title, address=h.address, category=h.category, region=h.region,
+                neighbourhood=h.neighbourhood, kind=h.kind, lat=h.lat, lng=h.lng, provider=h.provider,
+            )
+            for h in hits
+        ],
     )
