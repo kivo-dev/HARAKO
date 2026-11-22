@@ -2,6 +2,7 @@ import type { Opportunity } from "@/lib/opportunities";
 import type { Place } from "@/lib/places";
 import { API_BASE } from "./config";
 import { ApiError, isAbort } from "./errors";
+import { isValidLatLng } from "@/lib/map/coords";
 import { extractList, isObj, normalizeOpportunity, normalizePlace } from "./normalize";
 
 /**
@@ -12,6 +13,7 @@ import { extractList, isObj, normalizeOpportunity, normalizePlace } from "./norm
  *   GET {base}/places/{id}                          one place (404 -> null)
  *   GET {base}/suggestions?limit=6                  "Our suggestions" (the backend decides)
  *   GET {base}/opportunities?sector=                economic opportunities
+ *   GET {base}/geo/search?q=&lat=&lng=                search ANY destination through the routing provider's Search API
  *   GET {base}/route?from_lat&from_lng&(to_place | to_lat&to_lng)&mode=car   real route from the routing provider
  *
  * Every function THROWS an ApiError when the call fails. Nothing here returns an empty list on failure and
@@ -150,4 +152,35 @@ export async function fetchRoute(p: {
     durationS: duration,
     geometry: typeof json.geometry === "string" && json.geometry ? json.geometry : undefined,
   };
+}
+
+export type SearchResult = {
+  label: string;
+  address?: string;
+  region?: string;
+  neighbourhood?: string;
+  /** The provider's own record type (street, mosque, square, ...), shown as is. */
+  kind?: string;
+  lat: number;
+  lng: number;
+};
+
+const str = (v: unknown) => (typeof v === "string" && v.trim() ? v.trim() : undefined);
+
+/** Search any destination (not limited to HARAKO places). The results are the provider's suggestions:
+ *  the user must pick the right one, nothing is chosen automatically. `near` is only the reference point
+ *  the provider sorts by. Results with invalid coordinates are dropped. */
+export async function searchExternal(p: { q: string; near?: { lat: number; lng: number }; signal?: AbortSignal }): Promise<SearchResult[]> {
+  const json = await getJson("/geo/search", { q: p.q, lat: p.near?.lat, lng: p.near?.lng }, p.signal);
+  const list = isObj(json) && Array.isArray(json.results) ? json.results : [];
+  const out: SearchResult[] = [];
+  for (const row of list) {
+    if (!isObj(row)) continue;
+    const label = str(row.label);
+    const lat = Number(row.lat);
+    const lng = Number(row.lng);
+    if (!label || !isValidLatLng(lat, lng)) continue;
+    out.push({ label, address: str(row.address), region: str(row.region), neighbourhood: str(row.neighbourhood), kind: str(row.kind), lat, lng });
+  }
+  return out;
 }

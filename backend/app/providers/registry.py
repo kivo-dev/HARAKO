@@ -1,7 +1,7 @@
 """Single place that decides which provider implements which capability.
 FastAPI dependencies below are overridden in tests with fakes."""
 from .base import GeocodingProvider, PlaceSearchProvider, RoutingProvider
-from .pending import PendingNeshanGeocoding, PendingNeshanPlaceSearch
+from .pending import PendingNeshanGeocoding
 from ..config import get_settings
 
 
@@ -17,7 +17,10 @@ def get_geocoding_provider() -> GeocodingProvider:
 
 
 def get_place_search_provider() -> PlaceSearchProvider:
-    return PendingNeshanPlaceSearch()
+    from ..services.neshan_search import NeshanPlaceSearch  # contract checked against the official Search API page
+
+    s = get_settings()
+    return NeshanPlaceSearch(s.neshan_service_key, s.neshan_timeout_s)
 
 
 # State vocabulary:  verified   checked against official docs / real response, covered by tests
@@ -33,6 +36,7 @@ def capability_status() -> list[dict]:
         {"capability": "route_alternatives", "provider": "neshan", "state": "pending", "key_configured": key, "note": "Not wired."},
         {"capability": "geocode", "provider": "neshan", "state": "pending", "key_configured": key, "note": "Not wired."},
         {"capability": "reverse_geocode", "provider": "neshan", "state": "pending", "key_configured": key, "note": "Not wired."},
-        {"capability": "place_search", "provider": "neshan", "state": "pending", "key_configured": key, "note": "Not wired."},
+        {"capability": "place_search", "provider": "neshan", "state": "unverified" if key else "off", "key_configured": key,
+         "note": "GET /v1/search?term&lat&lng written from the official Search API page; no real call has been made yet. Check with `python -m app.services.neshan_check search`."},
         {"capability": "harako_places", "provider": "harako", "state": "verified", "key_configured": True, "note": "Own database."},
     ]

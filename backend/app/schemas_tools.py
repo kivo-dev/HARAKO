@@ -61,6 +61,9 @@ class ExternalPlace(BaseModel):
     label: str
     address: Optional[str] = None
     category: Optional[str] = None
+    region: Optional[str] = None
+    neighbourhood: Optional[str] = None
+    kind: Optional[str] = None
     lat: float
     lng: float
     provider: str

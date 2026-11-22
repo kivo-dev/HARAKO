@@ -10,7 +10,7 @@ import { apiEnabled } from "@/lib/api/config";
 import { isAbort } from "@/lib/api/errors";
 import { categoryIcons, categoryKeys, pick, samplePlaces, type CategoryKey, type Place } from "@/lib/places";
 import { MapCanvas } from "./MapCanvas";
-import type { MapMarker } from "./LeafletMap";
+import type { MapMarker } from "./MapLibreMap";
 
 type Status = "loading" | "ready" | "error";
 

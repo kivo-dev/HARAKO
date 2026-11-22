@@ -59,6 +59,10 @@ class PlaceSearchHit:
     lng: float
     category: Optional[str]
     provider: str
+    # Extra fields the provider sends (all optional; never guessed).
+    region: Optional[str] = None  # "city, province" as the provider writes it
+    neighbourhood: Optional[str] = None
+    kind: Optional[str] = None  # provider's own record type, e.g. mosque, street, square
 
 
 class RoutingProvider(Protocol):

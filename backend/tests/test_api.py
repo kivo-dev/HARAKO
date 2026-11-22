@@ -132,10 +132,10 @@ def test_route_rate_limit(client, seeded, fake_routing, settings, monkeypatch):
 
 # ---------- geo: contract final, implementation pending ----------
 def test_geo_endpoints_answer_501_with_structured_body(client):
+    # /v1/geo/search is implemented now: see tests/test_neshan_search.py
     for path, params, cap in (
         ("/v1/geo/geocode", {"q": "ماکو"}, "geocode"),
         ("/v1/geo/reverse", {"lat": 39.3, "lng": 44.5}, "reverse_geocode"),
-        ("/v1/geo/search", {"q": "cafe"}, "place_search"),
     ):
         r = client.get(path, params=params)
         assert r.status_code == 501, path
@@ -168,6 +168,7 @@ def test_provider_status_is_honest_and_has_no_secrets(client, settings, monkeypa
     caps = {c["capability"]: c for c in r.json()["capabilities"]}
     assert caps["routing_car"]["state"] == "unverified" and caps["routing_car"]["key_configured"] is True
     assert caps["geocode"]["state"] == "pending" and caps["reverse_geocode"]["state"] == "pending"
+    assert caps["place_search"]["state"] == "unverified" and caps["place_search"]["key_configured"] is True
     assert not any(c["state"] == "verified" and c["provider"] == "neshan" for c in caps.values())
 
 
